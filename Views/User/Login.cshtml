@@ -1,0 +1,42 @@
+﻿@model MIS.Models.User
+
+@{
+    ViewData["Title"] = "Log In";
+}
+
+@{
+
+    Layout = "loi.cshtml";
+}
+
+<h2>Log In</h2>
+
+
+
+<form asp-action="Login" method="post">
+    @Html.AntiForgeryToken()
+
+    <div>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" required />
+        <div class="text-danger">@Html.ValidationMessage("username")</div>
+    </div>
+
+    <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required />
+        <div class="text-danger">@Html.ValidationMessage("password")</div>
+    </div>
+
+    <button type="submit">Log In</button>
+
+ 
+   
+    @if (TempData["meow"] != null)
+    {
+        <p><span style="color: red;">Invalid username or password</span></p>
+
+    }
+
+    <p>No account? Sign Up <a asp-action="SignUp">here</a></p>
+</form>

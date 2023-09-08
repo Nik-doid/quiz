@@ -1,0 +1,64 @@
+﻿@model MIS.Models.User
+
+@{
+    ViewData["Title"] = "Sign Up";
+}
+
+@{
+    Layout = "loi.cshtml";
+}
+
+<h2>Sign Up</h2>
+
+@if (ViewData.ModelState.IsValid)
+{
+    <form asp-action="SignUp" method="post">
+        @Html.AntiForgeryToken()
+
+        <div>
+            <label asp-for="Username">Username</label>
+            <input asp-for="Username" />
+            <span asp-validation-for="Username"></span>
+        </div>
+
+        <div>
+            <label asp-for="Password">Password</label>
+            <input asp-for="Password" type="password" />
+            <span asp-validation-for="Password"></span>
+        </div>
+
+        <div>
+            <label asp-for="Address">Address</label>
+            <input asp-for="Address" />
+        </div>
+
+        <div>
+            <label asp-for="TelephoneNumber">Telephone Number</label>
+            <input asp-for="TelephoneNumber" />
+        </div>
+
+        <div>
+            <label asp-for="Age">Age</label>
+            <input asp-for="Age" type="number" />
+        </div>
+
+        <div>
+            <label asp-for="Email">Email</label>
+            <input asp-for="Email" />
+            <span asp-validation-for="Email"></span>
+        </div>
+
+        <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? Login <a asp-action="Login">Here</a></p>
+    @if (TempData["result"] != null)
+    {
+        <p>Username already exists</p>
+    }
+}
+else
+{
+    <p>Registration successful! You can now <a asp-action="Login">log in</a>.</p>
+}
+
+@Html.ValidationSummary()

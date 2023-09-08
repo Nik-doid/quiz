@@ -1,0 +1,26 @@
+@model Question
+
+@{
+    ViewBag.Title = "Add Question";
+}
+
+<h2>Add a New Question</h2>
+<form asp-action="AddQuestion" method="post">
+    <div class="form-group">
+        <label for="QuestionText">Question Text:</label>
+        <input type="text" class="form-control" id="QuestionText" name="QuestionText" required>
+    </div>
+    <div class="form-group">
+        <label>Options:</label>
+        <input type="text" class="form-control" name="Option1" required>
+        <input type="text" class="form-control" name="Option2" required>
+        <input type="text" class="form-control" name="Option3" required>
+        <input type="text" class="form-control" name="Option4" required>
+    </div>
+    <div class="form-group">
+        <label for="CorrectAnswerIndex">Correct Answer Index:</label>
+        <input type="number" class="form-control" id="CorrectAnswerIndex" name="CorrectAnswerIndex" required>
+    </div>
+    <button type="submit" class="btn btn-success">Add Question</button>
+</form>
+<a asp-action="Index" class="btn btn-primary">Go Back to Home</a>

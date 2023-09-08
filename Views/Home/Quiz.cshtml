@@ -1,0 +1,39 @@
+@model List<Question>
+
+@{
+    ViewBag.Title = "Quiz";
+}
+
+<h2>Quiz</h2>
+<form asp-action="SubmitAnswer" method="post">
+    @for (var i = 0; i < Model.Count; i++)
+    {
+        var question = Model[i];
+        <div>
+            <h3>@question.QuestionText</h3>
+            <label>
+                <input type="radio" name="Answers[@i].SelectedOptionIndex" value="1"> @question.Option1
+            </label>
+            <br>
+            <label>
+                <input type="radio" name="Answers[@i].SelectedOptionIndex" value="2"> @question.Option2
+            </label>
+            <br>
+               <label>
+                <input type="radio" name="Answers[@i].SelectedOptionIndex" value="3"> @question.Option3
+            </label>
+            <br>
+            <label>
+                <input type="radio" name="Answers[@i].SelectedOptionIndex" value="4"> @question.Option4
+            </label>
+            <br>
+            <!-- Repeat for other options -->
+
+            <input type="hidden" name="Answers[@i].QuestionId" value="@question.Id">
+        </div>
+        <input type="hidden" name="questionIndex" value="0" />
+    }
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+
